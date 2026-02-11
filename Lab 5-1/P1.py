@@ -65,7 +65,7 @@ class login(QWidget):
 #gmail
         Gmail = QLabel()
         try:
-            pixmap = QPixmap("Gmail_pic.PNG")
+            pixmap = QPixmap("Gmail_pic.png")
             Gmail.setPixmap(pixmap.scaled(
                 400, 400,  # width, height
                 Qt.KeepAspectRatio,  # maintain aspect ratio
@@ -82,7 +82,7 @@ class login(QWidget):
 #Face
         Face = QLabel()
         try:
-            pixmap = QPixmap("Gmail_pic.PNG")
+            pixmap = QPixmap("Face.webp")
             Face.setPixmap(pixmap.scaled(
                 400, 400,  # width, height
                 Qt.KeepAspectRatio,  # maintain aspect ratio
@@ -99,7 +99,7 @@ class login(QWidget):
 #Link
         Ln = QLabel()
         try:
-            pixmap = QPixmap("Gmail_pic.PNG")
+            pixmap = QPixmap("linkin.png")
             Ln.setPixmap(pixmap.scaled(
                 400, 400,  # width, height
                 Qt.KeepAspectRatio,  # maintain aspect ratio
