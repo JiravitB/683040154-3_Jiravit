@@ -44,7 +44,7 @@ class login(QWidget):
 
 #PushNutton
         self.log = QPushButton("LOGIN")
-        self.log.setFixedWidth(150)
+        self.log.setFixedWidth(280)
         button_layout.addWidget(self.log)
         button_layout.setAlignment(Qt.AlignCenter)
         
@@ -62,6 +62,7 @@ class login(QWidget):
         main_layout.addWidget(self.divider)
 
 #Pic
+#gmail
         Gmail = QLabel()
         try:
             pixmap = QPixmap("Gmail_pic.PNG")
@@ -77,6 +78,42 @@ class login(QWidget):
         Gmail.setAlignment(Qt.AlignCenter)
 
         pic_layout.addWidget(Gmail)
+
+#Face
+        Face = QLabel()
+        try:
+            pixmap = QPixmap("Gmail_pic.PNG")
+            Face.setPixmap(pixmap.scaled(
+                400, 400,  # width, height
+                Qt.KeepAspectRatio,  # maintain aspect ratio
+                Qt.SmoothTransformation  # smooth scaling
+            ))
+        except:
+            Face.setText("Image not found: WP.png")
+            Face.setAlignment(Qt.AlignCenter)
+
+        Face.setAlignment(Qt.AlignCenter)
+
+        pic_layout.addWidget(Face)
+
+#Link
+        Ln = QLabel()
+        try:
+            pixmap = QPixmap("Gmail_pic.PNG")
+            Ln.setPixmap(pixmap.scaled(
+                400, 400,  # width, height
+                Qt.KeepAspectRatio,  # maintain aspect ratio
+                Qt.SmoothTransformation  # smooth scaling
+            ))
+        except:
+            Ln.setText("Image not found: WP.png")
+            Ln.setAlignment(Qt.AlignCenter)
+
+        Ln.setAlignment(Qt.AlignCenter)
+
+        pic_layout.addWidget(Ln)
+
+        main_layout.addLayout(pic_layout)
 #Need acc
         self.need = QLabel("Need an account? SIGN UP")
         self.need.setAlignment(Qt.AlignCenter)
