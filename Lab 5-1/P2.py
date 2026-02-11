@@ -1,3 +1,9 @@
+"""
+Jiravit Boonyaritchaikit
+683040154-3
+P2
+"""
+
 from PySide6.QtWidgets import (QApplication, QMainWindow,
                              QVBoxLayout, QWidget, QHBoxLayout,
                              QGridLayout, QFormLayout, QLineEdit,
