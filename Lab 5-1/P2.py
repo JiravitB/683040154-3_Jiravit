@@ -17,9 +17,6 @@ class StudentRegistrationForm (QWidget):
     def __init__(self):
         super().__init__()
 
-        #self.setWindowTitle("Student Registration")
-        #self.setFixedSize(400, 600)
-
         main_layout = QVBoxLayout()
         botton_layout = QHBoxLayout()
 
