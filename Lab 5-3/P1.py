@@ -89,12 +89,20 @@ class Student(QMainWindow):
         main_layout.addWidget(self.table)
 
     def add_student(self):
-        stu_id = self.id.text().strip()
+        stu_id = self.id.currentText()
         stu_name = self.name.text().strip()
         stu_math = self.math.value()
         stu_sci = self.sci.value()
         stu_eng = self.eng.value()
 
+        if not stu_id:
+            QMessageBox.warning(self, "Input Error", "Please enter ID")
+            return
+
+        if not stu_name:
+            QMessageBox.warning(self, "Input Error", "Please enter name")
+            return
+        
         row_position = self.table.rowCount()
         self.table.insertRow(row_position)
 
@@ -125,18 +133,19 @@ class Student(QMainWindow):
         avg = total // 3
         avg_item = QTableWidgetItem(str(avg))
 
-        if avg < 50:
-            grade = QTableWidgetItem("F")
-            grade.setBackground(QColor("#FF3300"))
-        elif avg >= 50:
-            grade = QTableWidgetItem("D")
-        elif avg >= 60:
-            grade = QTableWidgetItem("C")
-        elif avg >= 70:
-            grade = QTableWidgetItem("B")
-        else:
+        if avg >= 80:
             grade = QTableWidgetItem("A")
             grade.setBackground(QColor("#00FF84"))
+        elif avg >= 70:
+            grade = QTableWidgetItem("B")
+        elif avg >= 60:
+            grade = QTableWidgetItem("C")
+        elif avg >= 50:
+            grade = QTableWidgetItem("D")
+        else:
+            grade = QTableWidgetItem("F")
+            grade.setBackground(QColor("#FF3300"))
+
 
         self.table.setItem(row_position, 0, id_item)
         self.table.setItem(row_position, 1, name_item)
@@ -149,16 +158,18 @@ class Student(QMainWindow):
 
         self.id.clear()
         self.name.clear()
-        self.math.clear()
-        self.sci.clear()
-        self.eng.clear()
+        self.math.setValue(0)
+        self.sci.setValue(0)
+        self.eng.setValue(0)
+
 
     def reset_input(self):
         self.id.clear()
         self.name.clear()
-        self.math.clear()
-        self.sci.clear()
-        self.eng.clear()
+        self.math.setValue(0)
+        self.sci.setValue(0)
+        self.eng.setValue(0)
+
 
     def clear_all(self):
         self.table.setRowCount(0)
