@@ -4,6 +4,7 @@ from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QColor
 import sys
+import os
 
 class Student(QMainWindow):
     def __init__(self):
@@ -24,7 +25,17 @@ class Student(QMainWindow):
         id = QLabel("Students ID: ")
         self.id = QComboBox()
         self.id.setPlaceholderText("Select Student ID")
-        self.id.load_id("students.txt")
+
+        self.student_map = {}
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(current_dir, "students.txt")
+        with open(file_path, "r", encoding = "utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if line:
+                    student_id, student_name = line.split(",", 1)
+                    self.student_map[student_id] = student_name
+                    self.id.addItem(student_id)
 
         input_layout.addWidget(id)
         input_layout.addWidget(self.id)
@@ -32,6 +43,8 @@ class Student(QMainWindow):
 #Student Name
         name = QLabel("Student Name: ")
         self.name = QLineEdit()
+        self.name.setReadOnly(True)
+        self.id.currentTextChanged.connect(self.update_student_name)
         
         input_layout.addWidget(name)
         input_layout.addWidget(self.name)
@@ -100,13 +113,8 @@ class Student(QMainWindow):
         main_layout.addLayout(button_layout)
         main_layout.addWidget(self.table)
 
-    def load_id(self, filename):
-        try:
-            with open(filename, "r") as file:
-                lines = file.readlines()
-                ids = [line.strip() for line in lines if line.strip()]
-        except FileNotFoundError:
-            QMessageBox.warning(self, "File Error", f"{filename} not found.")
+    def update_student_name(self, student_id):
+        self.name.setText(self.student_map.get(student_id, ""))
 
     def add_student(self):
         stu_id = self.id.currentText()
@@ -179,7 +187,7 @@ class Student(QMainWindow):
         self.table.setItem(row_position, 6, avg_item)
         self.table.setItem(row_position, 7, grade)
 
-        self.id.clear()
+        self.id.setCurrentIndex(-1)
         self.name.clear()
         self.math.setValue(0)
         self.sci.setValue(0)
@@ -187,7 +195,7 @@ class Student(QMainWindow):
 
 
     def reset_input(self):
-        self.id.clear()
+        self.id.setCurrentIndex(-1)
         self.name.clear()
         self.math.setValue(0)
         self.sci.setValue(0)
