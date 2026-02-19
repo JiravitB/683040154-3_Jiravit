@@ -23,8 +23,8 @@ class Student(QMainWindow):
 #Student ID
         id = QLabel("Students ID: ")
         self.id = QComboBox()
-        self.id.setEditable(True)
         self.id.setPlaceholderText("Select Student ID")
+        self.id.load_id("students.txt")
 
         input_layout.addWidget(id)
         input_layout.addWidget(self.id)
@@ -100,6 +100,14 @@ class Student(QMainWindow):
         main_layout.addLayout(button_layout)
         main_layout.addWidget(self.table)
 
+    def load_id(self, filename):
+        try:
+            with open(filename, "r") as file:
+                lines = file.readlines()
+                ids = [line.strip() for line in lines if line.strip()]
+        except FileNotFoundError:
+            QMessageBox.warning(self, "File Error", f"{filename} not found.")
+
     def add_student(self):
         stu_id = self.id.currentText()
         stu_name = self.name.text().strip()
@@ -107,7 +115,7 @@ class Student(QMainWindow):
         stu_sci = self.sci.value()
         stu_eng = self.eng.value()
 
-#Validate ID |ควรเช็คเลขด้วย|
+#Validate ID
         if not stu_id:
             QMessageBox.warning(self, "Input Error", "Please enter ID")
             return
@@ -145,8 +153,8 @@ class Student(QMainWindow):
         total = stu_math + stu_sci + stu_eng
         total_item = QTableWidgetItem(str(total))
 
-        avg = total // 3
-        avg_item = QTableWidgetItem(str(avg))
+        avg = total / 3
+        avg_item = QTableWidgetItem(str(f"{avg:.2f}"))
 
         if avg >= 80:
             grade = QTableWidgetItem("A")
