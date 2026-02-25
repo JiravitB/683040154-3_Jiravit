@@ -79,19 +79,77 @@ class Student(QMainWindow):
 #Add student button
         self.add = QPushButton("Add Student")
         self.add.clicked.connect(self.add_student)
+        self.add.setStyleSheet("""
+        QPushButton {
+        background-color: #36454F;
+        color: white;
+        border-radius: 15px;
+        padding: 8px 16px;
+        border: none;
+        font-weight: bold;
+    }
+
+        QPushButton:hover {
+            background-color: #FA8072;
+        }
+
+        QPushButton:pressed {
+            background-color: #E6735C;
+        }
+        """)
 
 #Add reset button
         self.reset = QPushButton("Reset Input")
         self.reset.clicked.connect(self.reset_input)
+        self.reset.setStyleSheet("""
+        QPushButton {
+        background-color: #36454F;
+        color: white;
+        border-radius: 15px;
+        padding: 8px 16px;
+        border: none;
+        font-weight: bold;
+    }
+
+        QPushButton:hover {
+            background-color: #FA8072;
+        }
+
+        QPushButton:pressed {
+            background-color: #E6735C;
+        }
+        """)
 
 #Add clear button
         self.clear = QPushButton("Clear All")
         self.clear.clicked.connect(self.clear_all)
+        self.clear.setStyleSheet("""
+        QPushButton {
+        background-color: #36454F;
+        color: white;
+        border-radius: 15px;
+        padding: 8px 16px;
+        border: none;
+        font-weight: bold;
+    }
+
+        QPushButton:hover {
+            background-color: #FA8072;
+        }
+
+        QPushButton:pressed {
+            background-color: #E6735C;
+        }
+        """)
 
 #Add all button to button layout
         button_layout.addWidget(self.add)
         button_layout.addWidget(self.reset)
         button_layout.addWidget(self.clear)
+
+        input_layout.setSpacing(25)
+        score_layout.setSpacing(25)
+        button_layout.setSpacing(25)
 
 #Make table
         self.table = QTableWidget()
@@ -127,11 +185,6 @@ class Student(QMainWindow):
         if not stu_id:
             QMessageBox.warning(self, "Input Error", "Please enter ID")
             return
-
-#validate name
-        if not stu_name:
-            QMessageBox.warning(self, "Input Error", "Please enter name")
-            return
         
         row_position = self.table.rowCount()
         self.table.insertRow(row_position)
@@ -144,19 +197,19 @@ class Student(QMainWindow):
         if stu_math < 50:
             math_item.setBackground(QColor("#FF3300"))
         else:
-            math_item.setBackground(QColor("#00FF84"))
+            math_item.setBackground(QColor("#02964E"))
 
         sci_item = QTableWidgetItem(str(stu_sci))
         if stu_sci < 50:
             sci_item.setBackground(QColor("#FF3300"))
         else:
-            sci_item.setBackground(QColor("#00FF84"))
+            sci_item.setBackground(QColor("#02964E"))
 
         eng_item = QTableWidgetItem(str(stu_eng))
         if stu_eng < 50:
             eng_item.setBackground(QColor("#FF3300"))
         else:
-            eng_item.setBackground(QColor("#00FF84"))
+            eng_item.setBackground(QColor("#02964E"))
 
         total = stu_math + stu_sci + stu_eng
         total_item = QTableWidgetItem(str(total))
@@ -166,7 +219,7 @@ class Student(QMainWindow):
 
         if avg >= 80:
             grade = QTableWidgetItem("A")
-            grade.setBackground(QColor("#00FF84"))
+            grade.setBackground(QColor("#02964E"))
         elif avg >= 70:
             grade = QTableWidgetItem("B")
         elif avg >= 60:
@@ -193,6 +246,7 @@ class Student(QMainWindow):
         self.sci.setValue(0)
         self.eng.setValue(0)
 
+        self.table.sortItems(0, Qt.AscendingOrder)
 
     def reset_input(self):
         self.id.setCurrentIndex(-1)
@@ -207,6 +261,10 @@ class Student(QMainWindow):
 
 def main():
     app = QApplication(sys.argv)
+    
+    #with open("Style.qss","r") as file:
+        #app.setStyleSheet(file.read())
+    
     window = Student()
     window.show()
     sys.exit(app.exec())
