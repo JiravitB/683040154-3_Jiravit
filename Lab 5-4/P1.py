@@ -129,7 +129,7 @@ class PersonalCard(QMainWindow):
 
     def update_display(self):
         self.name_label.setText(self.name.text())
-        self.age_label.setText(f"({self.age.value})")
+        self.age_label.setText(f"({self.age.value()})")
         self.position_label.setText(self.position.currentText())
         self.email_label.setText(self.email.text())
         self.bg_widget.setStyleSheet(f"background-color:{self.fav_color.name()};border-radius:6px;")
