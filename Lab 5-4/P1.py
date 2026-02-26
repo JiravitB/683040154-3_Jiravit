@@ -151,9 +151,9 @@ class PersonalCard(QMainWindow):
 def main():
     app = QApplication(sys.argv)
 
-    with open("P1_style.qss", "r") as f:
-        _style = f.read()
-        app.setStyleSheet(_style)
+    #with open("P1_style.qss", "r") as f:
+        #_style = f.read()
+       # app.setStyleSheet(_style)
 
     window = PersonalCard()
     window.show()
