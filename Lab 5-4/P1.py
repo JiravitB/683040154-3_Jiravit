@@ -107,7 +107,9 @@ class PersonalCard(QMainWindow):
 
         self.name_label = QLabel("Your name here")
         self.name_label.setStyleSheet("font-size: 18pt; font-weight: bold;")
+
         self.age_label = QLabel("(Age)")
+        
         self.position_label = QLabel("Your position here")
         self.position_label.setStyleSheet("font-size: 14pt;")
         email_icon = QLabel()
