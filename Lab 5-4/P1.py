@@ -28,8 +28,8 @@ class PersonalCard(QMainWindow):
         self.main_layout.addSpacing(15)
 
         # input section
-        self.input_layout = QFormLayout()
-        self.input_layout.setVerticalSpacing(12)
+        # self.input_layout = QFormLayout()
+        # self.input_layout.setVerticalSpacing(12)
         self.create_form()
 
         self.main_layout.addSpacing(5)
