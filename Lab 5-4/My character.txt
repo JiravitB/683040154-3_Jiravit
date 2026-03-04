@@ -1,0 +1,8 @@
+Name: jerry
+Race: Dwarf
+Class: Rogue
+Gender: Male
+STR: 5 / 20
+DEX: 5 / 20
+INT: 5 / 20
+VIT: 5 / 20
