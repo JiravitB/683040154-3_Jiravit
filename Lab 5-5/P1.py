@@ -37,9 +37,20 @@ class RoomCard(QWidget):
         layout.setSpacing(6)
 
         # Create labels and button in the card
+        self.emoji = QLabel(emoji)
+        self.emoji.setAlignment(Qt.AlignCenter)
+        self.emoji.setStyleSheet("font-size: 40px;")
 
+        self.name = QLabel(self.room_name)
+        self.name.setAlignment(Qt.AlignCenter)
+        self.name.setStyleSheet("""
+            font-size: 14px;
+            font-weight: 700
+            color: #11187;
+        """)
 
-        # Add labels and button to the layout
+        self.price_label = QLabel(f"{self.price} / night")
+        self.price_label.setAlignment        # Add labels and button to the layout
 
 
     def _on_select_clicked(self):
